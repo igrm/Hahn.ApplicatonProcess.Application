@@ -4,7 +4,7 @@ FROM mcr.microsoft.com/dotnet/aspnet:5.0-buster-slim AS base
 WORKDIR /app
 EXPOSE 80
 
-FROM node:14.15.5-alpine AS client
+FROM node:12.20.2-alpine3.12 AS client
 WORKDIR /app 
 COPY ["Hahn.ApplicatonProcess.February2021.Web", "."]
 WORKDIR /app/ClientApp
