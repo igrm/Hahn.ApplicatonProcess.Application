@@ -1,0 +1,14 @@
+﻿{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "importHelpers": true,
+        "lib": [ "ES2016", "DOM" ],
+        "module": "ESNext",
+        "moduleResolution": "Node",
+        "sourceMap": true,
+        "target": "es2016",
+        "allowSyntheticDefaultImports": true
+    },
+    "include": [ "src" ]
+}

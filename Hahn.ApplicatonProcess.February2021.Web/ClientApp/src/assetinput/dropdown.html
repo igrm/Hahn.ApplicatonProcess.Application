@@ -1,0 +1,19 @@
+﻿<template>
+    <div class="dropdown">
+        <button t.bind="caption" class="btn btn-blank dropdown-toggle text-left" type="button" id.bind="getButtonId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+        <div class="dropdown-menu dropdown-menu-lov" aria-labelledby="dropdownMenuButton">
+            <form class="px-4 py-2">
+                <div class="inner-addon right-addon">
+                    <i class="fa fa-search"></i>
+                    <input type="search" class="form-control" t="[placeholder]keyTypeHere" autofocus="autofocus">
+                </div>
+            </form>
+            <div class="dropdown-divider"></div>
+            <div class="dropdown-header" t="keyNotFound"></div>
+            <a class="dropdown-item default-lov-value" data-selected-value="" t.bind="caption" click.delegate="click($event)"></a>
+            <a class="dropdown-item lov-value" repeat.for="(key, value) of lov" data-selected-value="${key}" t="${value}" click.delegate="click($event)"></a>
+        </div>
+        <input tabindex.bind="tabindex" type="hidden" class="form-control" value.bind="value & validateOnChange">
+
+    </div>
+</template>

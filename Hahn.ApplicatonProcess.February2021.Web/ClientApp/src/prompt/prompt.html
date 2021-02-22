@@ -1,0 +1,36 @@
+﻿<template>
+    <div class="overlay" if.bind="isYesNoDialog"></div>
+    <div class="modal display" tabindex="-1" role="dialog" >
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" t.two-way="config.title"></h5>
+                    <button type="button" class="close" click.delegate="Cancel()">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body container-fluid">
+                    <div class="row">
+                        <div class="col-sm-1 justify-content-center align-self-center ml-2" if.bind="isYesNoDialog">
+                            <i class="fa fa-question-circle fa-2x" ></i>
+                        </div>
+                        <div class="col-sm-1 justify-content-center align-self-center ml-2" if.bind="isOkDialog">
+                            <i class="fa fa-exclamation-triangle fa-2x"></i>
+                        </div>
+                        <div class="col-sm-10 ml-2">
+                            <span class="align-middle" t.two-way="config.message"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer" if.bind="isYesNoDialog">
+                    <button type="button" class="btn btn-primary" click.delegate="Ok()" t="keyYes"></button>
+                    <button type="button" class="btn btn-secondary" click.delegate="Cancel()" t="keyNo"></button>
+                </div>
+                <div class="modal-footer"  if.bind="isOkDialog">
+                    <button type="button" class="btn btn-primary" click.delegate="Ok()" t="keyOk"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

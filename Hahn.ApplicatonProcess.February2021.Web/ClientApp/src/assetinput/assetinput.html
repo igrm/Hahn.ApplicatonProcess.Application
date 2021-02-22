@@ -1,0 +1,50 @@
+﻿<template>
+    <require from="./datepicker"></require>
+    <require from="./dropdown"></require>
+    <form class="form-asset" submit.delegate="submit()" data-map="[[],[],[],[],[]]" reset.delegate="reset()">
+        <h1 class="h3 mb-3 font-weight-normal" t="keyTitle"></h1>
+        <div class="row">
+            <div class="form-group col-md-12 mb-2">
+                <label for="assetName" t="keyAssetName"></label>
+                <input tabindex="0" t="[placeholder]keyAssetName" type="text" class="form-control" id="assetName" value.bind="assetName & validateOnChange">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6  mb-2">
+                <label for="department" t="keyDepartment"></label>
+                <dropdown tabindex="1" caption="keyChooseDepartment" id="department" value.two-way="department & validateOnChange" lov.two-way="departmentsLov"></dropdown>
+            </div>
+            <div class="form-group col-md-6  mb-2">
+                <label for="country" t="keyCountry"></label>
+                <dropdown tabindex="2" caption="keyChooseCountry" id="country" value.two-way="country & validateOnChange" lov.two-way="countriesLov"></dropdown>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-6  mb-2">
+                <label for="purchaseDate" t="keyPurchaseDate"></label>
+                <div class="input-group">
+                    <input tabindex="3" id="purchaseDate" datepicker type="text" class="form-control" placeholder.bind="dateFormat" value.two-way="purchaseDate & validateOnChange"/>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fa fa-th"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-6  mb-2">
+                <label for="email" t="keyEmail"></label>
+                <input tabindex="4" type="email" class="form-control" id="email" placeholder="you@example.com" value.two-way="email & validateOnChange">
+            </div>
+        </div>
+        <hr class="mb-4">
+        <div class="form-group">
+            <div class="form-check custom-control custom-checkbox">
+                <input tabindex="5" type="checkbox" class="form-check-input custom-control-input" id="broken" checked.bind="broken">
+                <label class="form-check-label custom-control-label" for="broken" t="keyAssetIsBroken"></label>
+            </div>
+        </div>
+        <hr class="mb-4">
+        <button class="btn btn-primary btn-lg" type="submit" t="keySend" disabled.bind="!(formIsValid && formIsFilled)"></button>
+        <button class="btn btn-secondary btn-lg" type="reset" t="keyReset" disabled.bind="!(formIsFilled || errorMessagesExist)"></button>
+    </form>
+</template>
