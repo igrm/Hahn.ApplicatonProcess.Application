@@ -8,7 +8,7 @@ namespace Hahn.ApplicatonProcess.February2021.Data.Infrastructure
 {
     public class AssetContext : DbContext
     {
-        public DbSet<Asset> Asset;
+        public DbSet<Asset> Asset { get; set; }
 
         public AssetContext(DbContextOptions<AssetContext> options) : base(options)
         {

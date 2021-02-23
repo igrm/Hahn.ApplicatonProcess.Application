@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Hahn.ApplicatonProcess.February2021.Domain.Utils;
 
 namespace Hahn.ApplicatonProcess.February2021.Data.Services
 {
@@ -37,7 +38,7 @@ namespace Hahn.ApplicatonProcess.February2021.Data.Services
             {
                 throw new AssetNotFoundException(id.ToString());
             }
-            _assetRepository.Update(toDelete);
+            _assetRepository.Delete(toDelete);
             await _unitOfWork.CommitAsync();
         }
 
@@ -53,10 +54,12 @@ namespace Hahn.ApplicatonProcess.February2021.Data.Services
 
         public async Task UpdateAsync(AssetDto asset)
         {
-            if (asset.ID.HasValue && await _assetRepository.GetAsync(x => x.ID == asset.ID) is not null)
+            var existing = await _assetRepository.GetAsync(x => x.ID == asset.ID);
+            if (asset.ID.HasValue && existing is not null)
             {
                 var toUpdate = _mapper.Map<Asset>(asset);
-                _assetRepository.Update(toUpdate);
+                existing.MatchPropertiesFrom(toUpdate);
+                _assetRepository.Update(existing);
                 await _unitOfWork.CommitAsync();
             }
             else

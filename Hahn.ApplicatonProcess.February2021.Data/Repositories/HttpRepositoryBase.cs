@@ -31,7 +31,7 @@ namespace Hahn.ApplicatonProcess.February2021.Data.Repositories
             }
             else
             {
-                var response = await HttpClient.GetAsync(uri);
+                var response = await Fetch(uri);
                 var text = await response.Content.ReadAsStringAsync();
 
                 MemoryCache.Set(uri, text);
@@ -43,5 +43,10 @@ namespace Hahn.ApplicatonProcess.February2021.Data.Repositories
         }
 
         protected abstract IList<T> ParseRawResponse<T>(string responseText) where T : class;
+
+        protected async virtual Task<HttpResponseMessage> Fetch(Uri uri)
+        {
+            return await HttpClient.GetAsync(uri);
+        }
     }
 }
