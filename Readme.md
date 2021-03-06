@@ -5,6 +5,9 @@
  4. Execute in terminal following command: `docker-compose up`
  5. Open in browser `http://localhost:8080` and you should see the input form, rolling logs are stored within `./Logs` directory.
 
+ # Live
+ Hosted on azure: http://hahn-applicatonprocess-application.azurewebsites.net/
+
  # Requirements
 
 SolutionName:
